@@ -11,7 +11,7 @@ function showAboutUs() {
 
 
 document.getElementById("login-link").addEventListener("click", function() {
-  window.location.href = "../LoginPage/login.html";
+  window.location.href = "../loginpage/login.html";
 });
 
 
