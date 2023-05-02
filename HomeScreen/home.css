@@ -92,3 +92,20 @@ header {
     line-height: 1.5;
     color: black;
 }
+
+
+#about-us-container {
+    margin-top: 60px;
+    margin-right: 10px;
+    padding:20px;
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: 60%;
+    background-color: #fff;
+    z-index: 999;
+ }
+ 
+  
