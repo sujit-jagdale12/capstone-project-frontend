@@ -30,9 +30,9 @@ function setupForm() {
 
     ev.preventDefault() // stop the default behaviour of refreshing the page
 
-    const formData = new FormData(ev.target) // ev.target points to form tag in the html
+    const formData = new FormData(ev.target) 
 
-    const user = Object.fromEntries(formData.entries()) // you are converting form data to js object
+    const user = Object.fromEntries(formData.entries()) 
     console.log(user)
 
     const { sts, msg } = validateForm(user)
