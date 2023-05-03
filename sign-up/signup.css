@@ -6,7 +6,11 @@ body {
     background-position: center;
     object-fit: contain;
 }
-
+.btn-login a{
+   color: black;
+   background-color: black;
+   border-radius: 5px;
+}
 form {
     background: lightgrey;
 }

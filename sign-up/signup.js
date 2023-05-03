@@ -1,6 +1,6 @@
 const validateForm = ({ email, password, gender, role }) => {
 
-    const roles = ['admin', 'user', 'Admin', 'User']
+    const roles = ['admin', 'user']
 
     if (email.length <= 0) return { msg: 'invalid email', sts: false }
     if (password.length <= 0) return { msg: 'invalid password', sts: false }
@@ -43,9 +43,7 @@ function apiSignup(user, form) {
     const headers = {
         'content-type': 'application/json'
     }
-    console.log(user)
-
-    axios.post('http://localhost:8080/signup/', user, { headers })
+    axios.post('http://localhost:8080/user/', user, { headers })
 
         .then(res => {
             form.reset()
