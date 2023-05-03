@@ -45,11 +45,3 @@ form {
   .form-footer{
     margin-top: 10px;
   }
-  .forgot-password-link {
-    margin-right: 50px;
-    position: absolute;
-    top: 48%;
-    right: 0;
-    transform: translateY(-50%);
-    font-size: 15px;
-}
