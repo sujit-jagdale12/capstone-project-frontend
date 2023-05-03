@@ -1,0 +1,60 @@
+body {
+    background: darkgray;
+    padding-top: 15vh;
+    background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCZ-CnW6XOHJgflqpYeEX3cijkLkVdBhWKYQ&usqp=CAU');
+    background-size: cover;
+    background-position: center;
+    object-fit: contain;
+}
+
+form {
+    background: lightgrey;
+}
+
+.form-container {
+    border-radius: 10px;
+    padding: 30px;
+    height: auto;
+}
+
+.container {
+    display: flex;
+    min-height: 100vh;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.login-button {
+    display: block;
+    margin: 0 auto;
+    background-color: #007bff;
+    border: none;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.login-button:hover {
+    background-color: #0062cc;
+}
+
+.form-footer {
+    margin-top: 10px;
+}
+
+.form-check-input[type="radio"] {
+    margin-top: 0.3rem;
+    margin-right: 0.5rem;
+}
+
+.dropdown-menu {
+    min-width: unset;
+}
+
+.dropdown-item:hover {
+    background-color: #f8f9fa;
+}
