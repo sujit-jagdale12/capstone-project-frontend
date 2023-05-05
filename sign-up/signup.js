@@ -47,7 +47,6 @@ function apiSignup(user, form) {
 
         .then(res => {
             form.reset()
-            // window.location.reload()
             showSuccessModal()
         }).catch(err => console.log(err))
 }
@@ -56,5 +55,4 @@ function showSuccessModal() {
     const myModalEl = document.getElementById('successModal');
     const modal = new bootstrap.Modal(myModalEl)
     modal.show()
-    // window.location.href = "../loginpage/login.html";
 }

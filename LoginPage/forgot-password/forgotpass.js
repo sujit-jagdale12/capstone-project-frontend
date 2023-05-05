@@ -7,18 +7,15 @@ forgotPasswordForm.addEventListener("submit", function (event) {
     const user = Object.fromEntries(formData.entries())
     console.log(user)
     validateForm(user)
-    // Make HTTP POST request to REST API endpoint
     axios.post('http://localhost:8080/user/login/forgotpass', user)
         .then((response) => {
-
             console.log(response.data);
+            // window.location.href = "../login.html";
         })
         .catch((error) => {
             console.error(error);
         });
-    // const message = "Password reset link has been sent to your email!";
-    // alert(message);
-    // window.location.href = "../loginpage/login.html";
+   
 });
 
 const validateForm = ({ email }) => {

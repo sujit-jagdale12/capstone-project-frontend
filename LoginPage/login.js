@@ -2,7 +2,7 @@ const forgotPasswordLink = document.getElementById("forgot-password");
 
 forgotPasswordLink.addEventListener("click", function (event) {
   event.preventDefault();
-  window.location.href = "../forgot-password/forgotpass.html";
+  window.location.href = "./forgot-password/forgotpass.html";
 });
 
 const signup = document.getElementById("sign-up-page")
@@ -62,8 +62,8 @@ function apiLogin(user, form) {
 
     }).then(data => {
       const  role = data.bd
-      if (role === 'admin') window.location.href = '../dashboard/admin-dash.html'
-      else window.location.href = '../dashboard/user-dash.html'
+      if (role === 'admin') window.location.href = '../dashboard/adminscreen/admin-dash.html'
+      else window.location.href = '../dashboard/userscreen/user-dash.html'
     })
     .catch(err => {
       console.log(err)
