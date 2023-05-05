@@ -15,10 +15,7 @@ function validateDate(dateStr) {
     }
     const currentDate = new Date();
     const inputDate = new Date(dateStr);
-    if (inputDate < currentDate) {
-        return false;
-    }
-    return true;
+    return inputDate >= currentDate;
 }
 
 function setupForm() {
