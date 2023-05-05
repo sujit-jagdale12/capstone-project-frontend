@@ -112,7 +112,7 @@ const validateTicketForm = ({ type, price }) => {
     return { sts: 'success', msg: 'all fields are valid' }
 }
 function validTicketType(type) {
-    if (type === 'vip' || type === 'earlybird' || type === 'group')  return true
+    if (type === 'vip' || type === 'earlybird' || type === 'group') return true
     return false
 }
 
@@ -155,4 +155,10 @@ function showSetTicket() {
 function hideSetTicket() {
     const container = document.getElementById("set-ticket-container");
     container.style.display = "none";
+}
+
+const homeLink = document.getElementById("ticket-submit");
+homeLink.addEventListener("click", goToTicket);
+function goToTicket() {
+    showSetTicket()
 }
