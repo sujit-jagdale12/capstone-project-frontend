@@ -31,3 +31,37 @@
 .card-header h2 {
     text-align: center;
 }
+
+.button-group {
+    display: flex;
+    justify-content: space-between;
+}
+
+.update-btn {
+    background-color: green;
+    color: white;
+    border: none;
+    margin-right: 10px;
+}
+
+.ticket-btn {
+    background-color: blue;
+    color: white;
+    border: none;
+}
+
+#about-us-container {
+    margin-top: 60px;
+    margin-right: 100px;
+    padding:20px;
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 30%;
+    height: 60%;
+    background-color: #4a3f3f;
+    color: white;
+    z-index: 999;
+    border-radius: 10px;
+ }

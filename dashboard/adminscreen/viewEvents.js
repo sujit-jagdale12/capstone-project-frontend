@@ -16,7 +16,7 @@ function propulateActualData(table, events) {
     console.log(events)
     for (const event of events) {
 
-        const { id, title, startdate, enddate, location, time} = event
+        const { id, title, startdate, enddate, location, time } = event
         const updatePageUrl = `./update-event.html?id=${id}`
         // const viewPageUrl = `./view-event.html?id=${id}`
 
@@ -61,7 +61,9 @@ function apiCallDeleteEvent(id, modal) {
     const url = `http://localhost:8080/admin/events/${id}`
 
     axios.delete(url)
-        .then(res => res.data)
+        .then(res =>
+            window.location.reload())
         .then(({ sts, msg, bd }) => modal.hide())
         .catch(console.log)
 }
+

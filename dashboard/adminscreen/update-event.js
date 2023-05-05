@@ -62,6 +62,8 @@ function populateForm(form, data) {
 function setupForm() {
     const err = document.getElementById('errMsg')
     err.style.display = 'none'
+    const er = document.getElementById('errTicketMsg')
+    err.style.display = 'none'
     const formEvent = document.getElementById('form-update-link')
 
     formEvent.onsubmit = ev => {
@@ -82,7 +84,54 @@ function setupForm() {
         }
 
     }
+
+    const ticketForm = document.getElementById("ticket-form")
+
+    ticketForm.onsubmit = ev => {
+
+        ev.preventDefault()
+
+        const formData = new FormData(ev.target)
+
+        const ticket = Object.fromEntries(formData.entries())
+        console.log(ticket)
+
+        const { sts, msg } = validateTicketForm(ticket)
+
+        if (sts) apiUpdateTicket(ticket, ticketForm)
+        else {
+            er.style.display = 'block'
+            er.innerHTML = `<strong>${msg}</strong>`
+        }
+    }
+
 }
+
+const validateTicketForm = ({ type, price }) => {
+    if (!validTicketType(type)) return { msg: 'invalid ticket type', sts: false }
+    if (type.length <= 0) return { msg: 'invalid ticket type', sts: false }
+    if (price <= 0) return { msg: 'Price can\'t be Zero/Negative', sts: false }
+
+    return { sts: 'success', msg: 'all fields are valid' }
+}
+function validTicketType(type) {
+    if (type === 'vip' || type === 'earlybird' || type === 'group')  return true
+    return false
+}
+
+function apiUpdateTicket(ticket) {
+    const id = readIdQueryParam()
+    const url = `http://localhost:8080/admin/events/${id}/tickets`
+    const headers = {
+        'content-type': 'application/json'
+    }
+    axios.post(url, ticket, { headers })
+        .then(res => {
+            showSuccessTicket()
+            hideSetTicket()
+        }).catch(err => console.log(err))
+}
+
 
 
 setupForm()
@@ -93,4 +142,20 @@ function showSuccessModal() {
     const myModalEl = document.getElementById('successModal');
     const modal = new bootstrap.Modal(myModalEl)
     modal.show()
+}
+function showSuccessTicket() {
+    const myModalEl = document.getElementById('successModalTicket');
+    const modal = new bootstrap.Modal(myModalEl)
+    modal.show()
+}
+
+
+function showSetTicket() {
+    const container = document.getElementById("about-us-container");
+    container.style.display = "block";
+}
+
+function hideSetTicket() {
+    const container = document.getElementById("about-us-container");
+    container.style.display = "none";
 }
