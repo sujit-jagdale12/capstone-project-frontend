@@ -24,8 +24,6 @@ const readIdQueryParam = () => {
     return params.id
 }
 
-console.log(readIdQueryParam())
-
 function apiGetEventDetails() {
     const id = readIdQueryParam()
 
@@ -40,7 +38,6 @@ function apiUpdateExistingForm(invoice, form) {
         .then(httpResponse => httpResponse.data)
         .then(data => console.log(data.msg))
         .then(res => {
-            form.reset()
             showSuccessModal()
         })
         .catch(err => console.log(err))
@@ -151,11 +148,11 @@ function showSuccessTicket() {
 
 
 function showSetTicket() {
-    const container = document.getElementById("about-us-container");
+    const container = document.getElementById("set-ticket-container");
     container.style.display = "block";
 }
 
 function hideSetTicket() {
-    const container = document.getElementById("about-us-container");
+    const container = document.getElementById("set-ticket-container");
     container.style.display = "none";
 }
