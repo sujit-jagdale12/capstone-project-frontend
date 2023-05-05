@@ -157,8 +157,8 @@ function hideSetTicket() {
     container.style.display = "none";
 }
 
-const homeLink = document.getElementById("ticket-submit");
-homeLink.addEventListener("click", goToTicket);
+const ticketLink = document.getElementById("ticket-submit");
+ticketLink.addEventListener("click", goToTicket);
 function goToTicket() {
     showSetTicket()
 }
