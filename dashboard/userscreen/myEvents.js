@@ -23,8 +23,15 @@ function propulateActualData(table, events) {
     }
 }
 
+function logOut() {
+    localStorage.setItem("userId", null)
+    window.location.href = "../../loginpage/login.html"
+}
+
+
 function apiFetchAllEvents(table) {
-    axios.get(`http://localhost:8080/attendee/${2}`)
+    const id = localStorage.getItem("userId");
+    axios.get(`http://localhost:8080/attendee/${id}`)
         .then(res => {
             const { data } = res
             propulateActualData(table, data)
@@ -32,15 +39,5 @@ function apiFetchAllEvents(table) {
         .catch(err => console.log(err))
 }
 
-function getUserId() {
-    axios.get('http://192.168.43.37:5500/api/current-user')
-        .then(response => {
-            const userId = response.data.id;
-            console.log(`User ID: ${userId}`);
-            return userId;
-        })
-        .catch(error => console.error(error));
-}
 
-getUserId()
 

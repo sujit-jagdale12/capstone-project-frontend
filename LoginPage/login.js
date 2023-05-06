@@ -26,13 +26,12 @@ function setupForm() {
 
   const formSignup = document.getElementById('formLogin')
 
-  formSignup.onsubmit = ev => { // when form is submitted, this function would be called
+  formSignup.onsubmit = ev => {
 
-    ev.preventDefault() // stop the default behaviour of refreshing the page
+    ev.preventDefault()
+    const formData = new FormData(ev.target)
 
-    const formData = new FormData(ev.target) 
-
-    const user = Object.fromEntries(formData.entries()) 
+    const user = Object.fromEntries(formData.entries())
     console.log(user)
 
     const { sts, msg } = validateForm(user)
@@ -52,16 +51,17 @@ function apiLogin(user, form) {
     'content-type': 'application/json'
   }
   console.log("inside api")
-  axios.post('http://localhost:8080/user/login', user, { headers })
+  axios.post('http://localhost:8080/user/loginv2', user, { headers })
     .then(httpResponse => {
       form.reset()
-      console.log(httpResponse)
-      
+      // console.log(httpResponse)
       console.log(httpResponse.data.bd)
       return httpResponse.data
 
     }).then(data => {
-      const  role = data.bd
+      console.log(data)
+      const { role, id } = data.bd
+      localStorage.setItem("userId", id)
       if (role === 'admin') window.location.href = '../dashboard/adminscreen/admin-dash.html'
       else window.location.href = '../dashboard/userscreen/user-dash.html'
     })

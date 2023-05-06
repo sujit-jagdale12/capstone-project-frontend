@@ -60,8 +60,8 @@ function populateForm(form, data) {
 function setupForm() {
     const err = document.getElementById('errMsg')
     err.style.display = 'none'
-    const er = document.getElementById('errTicketMsg')
-    err.style.display = 'none'
+    // const er = document.getElementById('errTicketMsg')
+    // err.style.display = 'none'
     const formEvent = document.getElementById('form-update-link')
 
     formEvent.onsubmit = ev => {
@@ -92,10 +92,25 @@ function setupForm() {
         const ticket = Object.fromEntries(formData.entries())
         console.log(ticket)
 
-        apiUpdateTicket(ticket, ticketForm)
-       
+        const { sts, msg } = validateTicketForm(ticket)
+
+        if (sts) apiUpdateTicket(ticket, ticketForm)
+        else {
+            er.style.display = 'block'
+            er.innerHTML = `<strong>${msg}</strong>`
+        }
     }
 
+}
+
+const validateTicketForm = ({ type, price }) => {
+    if (!validTicketType(type)) return { msg: 'invalid ticket type choose vip/earlybird/group', sts: false }
+    if (price <= 0) return { msg: 'Price can\'t be Zero/Negative....', sts: false }
+
+    return { sts: 'success', msg: 'all fields are valid' }
+}
+function validTicketType(type) {
+    return !!(type === 'vip' || type === 'earlybird' || type === 'group');
 }
 
 function apiUpdateTicket(ticket,ticketForm) {
