@@ -92,26 +92,10 @@ function setupForm() {
         const ticket = Object.fromEntries(formData.entries())
         console.log(ticket)
 
-        const { sts, msg } = validateTicketForm(ticket)
-
-        if (sts) apiUpdateTicket(ticket, ticketForm)
-        else {
-            er.style.display = 'block'
-            er.innerHTML = `<strong>${msg}</strong>`
-        }
+        apiUpdateTicket(ticket, ticketForm)
+       
     }
 
-}
-
-const validateTicketForm = ({ type, price }) => {
-    if (!validTicketType(type)) return { msg: 'invalid ticket type choose vip/earlybird/group', sts: false }
-    if (type.length <= 0) return { msg: 'invalid ticket type', sts: false }
-    if (price <= 0) return { msg: 'Price can\'t be Zero/Negative', sts: false }
-
-    return { sts: 'success', msg: 'all fields are valid' }
-}
-function validTicketType(type) {
-    return !!(type === 'vip' || type === 'earlybird' || type === 'group');
 }
 
 function apiUpdateTicket(ticket,ticketForm) {
