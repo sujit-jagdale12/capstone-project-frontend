@@ -159,3 +159,8 @@ ticketLink.addEventListener("click", goToTicket);
 function goToTicket() {
     showSetTicket()
 }
+
+function logOut() {
+    localStorage.setItem("userId", null)
+    window.location.href = "../../loginpage/login.html"
+}

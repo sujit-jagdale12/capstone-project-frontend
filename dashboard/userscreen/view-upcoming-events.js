@@ -44,7 +44,7 @@ function propulateActualData(table, events) {
 
 
 function apiFetchAllEvents(table) {
-    
+
     axios.get('http://localhost:8080/admin/events')
         .then(res => {
             const { data } = res
@@ -54,7 +54,7 @@ function apiFetchAllEvents(table) {
 }
 
 function apiFetchAllLocationEvents(table, loc) {
-    
+
     const url = `http://localhost:8080/attendee/events`
     axios.get(url, {
         params: {
@@ -66,4 +66,8 @@ function apiFetchAllLocationEvents(table, loc) {
             propulateActualData(table, data)
         })
         .catch(err => console.log(err))
+}
+function logOut() {
+    localStorage.setItem("userId", null)
+    window.location.href = "../../loginpage/login.html"
 }

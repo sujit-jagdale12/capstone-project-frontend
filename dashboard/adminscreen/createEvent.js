@@ -61,3 +61,8 @@ function showSuccessModal() {
     const modal = new bootstrap.Modal(myModalEl)
     modal.show()
 }
+
+function logOut() {
+    localStorage.setItem("userId", null)
+    window.location.href = "../../loginpage/login.html"
+}

@@ -59,3 +59,7 @@ function apiCallDeleteEvent(id, modal) {
         .catch(console.log)
 }
 
+function logOut() {
+    localStorage.setItem("userId", null)
+    window.location.href = "../../loginpage/login.html"
+}
