@@ -42,6 +42,7 @@ function setupForm() {
         }
     }
 }
+
 setupForm()
 
 function apiSignup(user, form) {

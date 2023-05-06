@@ -58,6 +58,7 @@ function showSuccessModalEventBook() {
 }
 function bookEventByUserId() {
     const userId = localStorage.getItem("userId");
+    
     const eventId = readIdQueryParam()
 
     const headers = {
