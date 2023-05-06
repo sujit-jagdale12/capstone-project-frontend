@@ -1,11 +1,5 @@
 function setupTable() {
     const table = document.getElementById('tableEvent')
-
-    // const btnSearch = document.getElementById('btnSearch')
-
-    // btnSearch.onclick = () => {
-    //     apiFetchAllCustomerInvoices(table, document.getElementById('txtClient').value)
-    // }
     apiFetchAllEvents(table)
 }
 
@@ -13,12 +7,10 @@ setupTable()
 
 function propulateActualData(table, events) {
 
-    console.log(events)
     for (const event of events) {
 
         const { id, title, startdate, enddate, location, time } = event
         const updatePageUrl = `./update-event.html?id=${id}`
-        // const viewPageUrl = `./view-event.html?id=${id}`
 
         const row = table.insertRow()
         row.insertCell(0).innerHTML = id

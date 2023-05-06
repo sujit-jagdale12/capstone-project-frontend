@@ -38,6 +38,7 @@ function apiUpdateExistingForm(invoice, form) {
         .then(httpResponse => httpResponse.data)
         .then(data => console.log(data.msg))
         .then(res => {
+            console.log(res)
             showSuccessModal()
         })
         .catch(err => console.log(err))
@@ -71,8 +72,6 @@ function setupForm() {
         const rawData = Object.fromEntries(formData.entries())
         const id = readIdQueryParam()
         const event = { ...rawData, id }
-        console.log(rawData)
-        console.log(event)
         const { sts, msg } = validateForm(rawData)
         if (sts) apiUpdateExistingForm(event, formEvent)
         else {
@@ -105,18 +104,17 @@ function setupForm() {
 }
 
 const validateTicketForm = ({ type, price }) => {
-    if (!validTicketType(type)) return { msg: 'invalid ticket type', sts: false }
+    if (!validTicketType(type)) return { msg: 'invalid ticket type choose vip/earlybird/group', sts: false }
     if (type.length <= 0) return { msg: 'invalid ticket type', sts: false }
     if (price <= 0) return { msg: 'Price can\'t be Zero/Negative', sts: false }
 
     return { sts: 'success', msg: 'all fields are valid' }
 }
 function validTicketType(type) {
-    if (type === 'vip' || type === 'earlybird' || type === 'group') return true
-    return false
+    return !!(type === 'vip' || type === 'earlybird' || type === 'group');
 }
 
-function apiUpdateTicket(ticket) {
+function apiUpdateTicket(ticket,ticketForm) {
     const id = readIdQueryParam()
     const url = `http://localhost:8080/admin/events/${id}/tickets`
     const headers = {
