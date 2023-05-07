@@ -9,22 +9,18 @@ function apiGetEventDetails() {
     const id = readIdQueryParam()
 
     axios.get(`http://localhost:8080/admin/events/${id}`)
-        .then(httpReponse => httpReponse.data)
-        .then(data => populateForm(document.getElementById('view-eventdetails'), data.bd))
-        .catch(err => console.log(err))
-}
-
-function populateForm(form, data) {
-    const { elements } = form;
-
-    const entries = Object.entries(data)
-
-    for (const entry of entries) {
-        const [key, value] = entry
-        const inputField = elements.namedItem(key)
-        if (inputField) inputField.value = value
-    }
-
+        .then(function (response) {
+            const data = response.data.bd;
+            document.getElementById('title').textContent = data.title;
+            document.getElementById('description').textContent = data.description;
+            document.getElementById('startdate').textContent = data.startdate;
+            document.getElementById('enddate').textContent = data.enddate;
+            document.getElementById('time').textContent = data.time;
+            document.getElementById('location').textContent = data.location;
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
 }
 
 function setupForm() {
@@ -32,17 +28,11 @@ function setupForm() {
 
     formEvent.onsubmit = ev => {
         ev.preventDefault()
-
         showSuccessModal()
     }
 }
 
 setupForm()
-function showSuccessModal() {
-    const myModalEl = document.getElementById('successModal');
-    const modal = new bootstrap.Modal(myModalEl)
-    modal.show()
-}
 
 apiGetEventDetails()
 
@@ -56,9 +46,10 @@ function showSuccessModalEventBook() {
     const modal = new bootstrap.Modal(myModalEl)
     modal.show()
 }
+
 function bookEventByUserId() {
     const userId = localStorage.getItem("userId");
-    
+
     const eventId = readIdQueryParam()
 
     const headers = {
@@ -75,4 +66,10 @@ function bookEventByUserId() {
 function hideSetBookEvent() {
     const container = document.getElementById("successModal");
     container.style.display = "none";
+}
+
+function showSuccessModal() {
+    const myModalEl = document.getElementById('successModal');
+    const modal = new bootstrap.Modal(myModalEl)
+    modal.show()
 }
