@@ -60,6 +60,9 @@ function apiFetchAllLocationEvents(table, loc) {
         params: {
             location: loc
         }
+    }).then(res => {
+        const { data } = res
+        propulateActualData(table, data)
     })
         .catch(err => console.log(err))
 }
