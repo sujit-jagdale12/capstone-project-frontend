@@ -10,7 +10,7 @@
     <style>
         .ticket-card {
             background-color: antiquewhite;
-            margin-top: 200px;
+            margin-top: 150px;
             max-width: 400px;
             margin-left: 500px;
         }
@@ -24,15 +24,16 @@
 
 <body>
     <form id="set-ticket-form" class="ticket-card">
-        <div class="row">
-            <div class="col">
-                <div class="alert alert-danger" role="alert" id="errMsg">
-                </div>
-            </div>
-        </div>
+
         <div class="card ssd">
             <div class="card-body">
-                <h1 class="mt-5">TICKETS</h1>
+                <div class="row">
+                    <div class="col">
+                        <div class="alert alert-danger" role="alert" id="errMsg">
+                        </div>
+                    </div>
+                </div>
+                <h1 class="mt-3">TICKETS</h1>
                 <p>Enter the ticket type and price below :</p>
                 <div class="mb-3">
                     <label for="ticket-type" class="form-label">Ticket Type:</label>

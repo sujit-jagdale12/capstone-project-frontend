@@ -61,10 +61,6 @@ function apiFetchAllLocationEvents(table, loc) {
             location: loc
         }
     })
-        .then(res => {
-            const { data } = res
-            propulateActualData(table, data)
-        })
         .catch(err => console.log(err))
 }
 function logOut() {
