@@ -1,11 +1,12 @@
 const validateForm = ({ title, description, startdate, enddate, location, time }) => {
 
     if (title.length <= 0) return { msg: 'invalid title', sts: false }
-    if (location.length <= 0) return { msg: 'invalid location', sts: false }
-    if (description.length <= 0) return { msg: 'invalid description', sts: false }
+    if (validateDate1(startdate,enddate)) return { msg: 'The end date cannot be before the start date.', sts: false }
     if (!validateDate(startdate)) return { msg: 'invalid startdate', sts: false }
     if (!validateDate(enddate)) return { msg: 'invalid enddate', sts: false }
+    if (location.length <= 0) return { msg: 'invalid location', sts: false }
     if (time.length <= 0) return { msg: 'invalid time', sts: false }
+    if (description.length <= 0) return { msg: 'invalid description', sts: false }
 
     return { sts: 'success', msg: 'all fields are valid' }
 }
@@ -16,6 +17,14 @@ function validateDate(dateStr) {
     const currentDate = new Date();
     const inputDate = new Date(dateStr);
     return inputDate >= currentDate;
+}
+function validateDate1(dateStr,dt) {
+    if (!dateStr || !dt) {
+        return false;
+    }
+    const start = new Date(dateStr);
+    const end = new Date(dt);
+    return end < start;
 }
 
 function setupForm() {
