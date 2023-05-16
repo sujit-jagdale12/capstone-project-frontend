@@ -3,7 +3,7 @@ const validateForm = ({ email, password, gender, role }) => {
     const roles = ['admin', 'user']
 
     if (email.length <= 0) return { msg: 'invalid email', sts: false }
-    if (password.length <= 0) return { msg: 'invalid password', sts: false }
+    if (password.length < 8) return { msg: 'Password must be 8 characters', sts: false }
     if (gender == null) return { msg: 'invalid gender', sts: false }
     if ((role.length <= 0) || !roles.includes(role)) return { msg: 'invalid role', sts: false }
 

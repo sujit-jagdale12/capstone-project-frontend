@@ -41,11 +41,11 @@ function logOut() {
     window.location.href = "../../loginpage/login.html"
 }
 
-function showSuccessModalEventBook() {
-    const myModalEl = document.getElementById('successModalEventByUserId');
-    const modal = new bootstrap.Modal(myModalEl)
-    modal.show()
-}
+// function showSuccessModalEventBook() {
+//     const myModalEl = document.getElementById('successModalEventByUserId');
+//     const modal = new bootstrap.Modal(myModalEl)
+//     modal.show()
+// }
 
 function bookEventByUserId() {
     const userId = localStorage.getItem("userId");
@@ -57,16 +57,15 @@ function bookEventByUserId() {
     }
     axios.post(`http://localhost:8080/attendee/${userId}/event/${eventId}`, { headers })
 
-        .then(res => {
-            showSuccessModalEventBook()
-            hideSetBookEvent()
-        }).catch(err => console.log(err))
+        .then(
+            window.location.href = "./payment-ui/payment.html"
+        ).catch (err => console.log(err))
 }
 
-function hideSetBookEvent() {
-    const container = document.getElementById("successModal");
-    container.style.display = "none";
-}
+// function hideSetBookEvent() {
+//     const container = document.getElementById("successModal");
+//     container.style.display = "none";
+// }
 
 function showSuccessModal() {
     const myModalEl = document.getElementById('successModal');
