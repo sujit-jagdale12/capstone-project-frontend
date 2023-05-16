@@ -35,7 +35,7 @@
             </div>
         </div>
     </nav>
-    <form class="form-minimize" id="view-eventdetails"  style="margin-left: 500px;">
+    <form class="form-minimize" id="view-eventdetails" style="margin-left: 500px;">
         <div class="card">
             <div class="card-body bg-dark text-white">
                 <h4>Hurry Up! Book your slot...!</h4>
@@ -59,16 +59,18 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="form-group">
-                    <label for="ticketType">Ticket Type</label>
-                    <select class="form-select form-select-sm mt-3" id="ticketType" name="ticketType">
+                    <label for="ticketType"><b>Ticket Type</b></label>
+                    <select class="form-select form-select-sm mt-3" id="ticketType" onchange="showPrice()" name="ticketType">
+                        <option value="">Select...</option>
                         <option value="vip">VIP</option>
                         <option value="earlybird">Early Bird</option>
                         <option value="group">Group</option>
                     </select>
                 </div>
+                <div id="priceContainer" class="col-md-6 mb-3"></div>
                 <div class="col-md-6 mb-3">
-                    <label for="quantity" class="form-label">Quantity</label>
-                    <input type="text" class="form-control" id="quantity" name="quantity" placeholder="quantity">
+                    <label for="quantity" class="form-label"><b>Quantity</b></label>
+                    <input type="number" class="form-control" id="quantity" name="quantity" placeholder="quantity">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary" onclick="bookEventByUserId()"><a
@@ -78,24 +80,6 @@
         </div>
     </div>
 
-    <!-- <div class="modal fade" id="successModalEventByUserId" tabindex="-1" aria-labelledby="exampleModalLabelUser"
-        aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="successModalEventByUserId">Success</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    Event Booked Successfully
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-success"><a href="./MyEvents.html"
-                            class="text-white">CLOSE</a></button>
-                </div>
-            </div>
-        </div>
-    </div> -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
 

@@ -45,7 +45,7 @@ function propulateActualData(table, events) {
 
 function apiFetchAllEvents(table) {
 
-    axios.get('http://localhost:8080/admin/events')
+    axios.get('http://localhost:8080/attendee/upcomingevents')
         .then(res => {
             const { data } = res
             propulateActualData(table, data)

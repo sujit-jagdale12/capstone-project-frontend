@@ -41,11 +41,6 @@ function logOut() {
     window.location.href = "../../loginpage/login.html"
 }
 
-// function showSuccessModalEventBook() {
-//     const myModalEl = document.getElementById('successModalEventByUserId');
-//     const modal = new bootstrap.Modal(myModalEl)
-//     modal.show()
-// }
 
 function bookEventByUserId() {
     const userId = localStorage.getItem("userId");
@@ -62,13 +57,26 @@ function bookEventByUserId() {
         ).catch (err => console.log(err))
 }
 
-// function hideSetBookEvent() {
-//     const container = document.getElementById("successModal");
-//     container.style.display = "none";
-// }
 
 function showSuccessModal() {
     const myModalEl = document.getElementById('successModal');
     const modal = new bootstrap.Modal(myModalEl)
     modal.show()
 }
+
+function showPrice() {
+    const ticketType = document.getElementById("ticketType").value;
+
+    let price;
+    if (ticketType === "vip") {
+      price = "$100";
+    } else if (ticketType === "earlybird") {
+      price = "$75";
+    } else if (ticketType === "group") {
+      price = "$50";
+    } else {
+      price = "";
+    }
+
+    document.getElementById("priceContainer").textContent = "Price: " + price;
+  }
