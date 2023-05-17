@@ -1,19 +1,16 @@
 const validateForm = ({ reminder, date, time }) => {
 
     if (reminder.length <= 0) return { msg: 'invalid title', sts: false }
-    if (!validateDate(date)) return { msg: 'invalid date', sts: false }
     if (time.length <= 0) return { msg: 'invalid time', sts: false }
     return { sts: 'success', msg: 'all fields are valid' }
 }
-function validateDate(dateStr) {
-    if (!dateStr) {
-        return false;
-    }
-    const currentDate = new Date();
-    const inputDate = new Date(dateStr);
-    return inputDate >= currentDate;
-}
 
+const readIdQueryParam = () => {
+    const params = new Proxy(new URLSearchParams(window.location.search), {
+        get: (searchParams, prop) => searchParams.get(prop),
+    });
+    return params.id
+}
 
 function setupForm() {
 
@@ -43,20 +40,24 @@ function setupForm() {
 setupForm()
 
 function apiSignup(user, form) {
-    showSuccessModal()
-    // const headers = {
-    //     'content-type': 'application/json'
-    // }
-    // axios.post('http://localhost:8080/admin/newevent', user, { headers })
 
-    //     .then(res => {
-    //         form.reset()
-    //         showSuccessModal()
-    //     }).catch(err => console.log(err))
+    const headers = {
+        'content-type': 'application/json'
+    }
+    const eventId=readIdQueryParam();
+    axios.post(`http://localhost:8080/admin/events/${eventId}/reminder`, user, { headers })
+
+        .then(res => {
+            form.reset()
+            showSuccessModal()
+        }).catch(err => console.log(err))
 }
 
 function showSuccessModal() {
     const myModalEl = document.getElementById('successModal');
     const modal = new bootstrap.Modal(myModalEl)
     modal.show()
+}
+function backToUpdate() {
+    window.history.back();
 }

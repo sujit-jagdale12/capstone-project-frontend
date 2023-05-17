@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Event details</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="../view-userevent.css">
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="./user-dash.html">USER Dashboard</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="../user-dash.html">Home</a>
+                    </li>
+                    <li class="nav-item ms-10">
+                        <a class="nav-link" href="../MyEvents.html">My Events</a>
+                    </li>
+                    <li class="nav-item ms-10">
+                        <a class="nav-link" onclick="logOut()">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <form class="form-minimize" id="view-eventdetails" style="margin-left: 500px;">
+        <div class="card">
+            <div class="card-body bg-dark text-white">
+                <h4>Speaker for the event. Go back and book event now!</h4>
+                <ul class="list-group list-group-flush mt-5">
+                    <li class="list-group-item"><strong>Speaker:</strong> <span id="speaker"></span></li>
+                    <li class="list-group-item"><strong>Topic:</strong> <span id="topic"></span></li>
+                    <li class="list-group-item"><strong>Start Time:</strong> <span id="startTime"></span></li>
+                    <li class="list-group-item"><strong>End Time:</strong> <span id="endTime"></span></li>
+                </ul>
+            </div>
+        </div>
+    </form>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="view-speaker.js"></script>
+
+</body>
+
+</html>

@@ -28,6 +28,7 @@ function propulateActualData(table, events) {
     for (const event of events) {
         const { id, title, startdate, enddate, location, time } = event
         const viewPageUrl = `./view-event.html?id=${id}`
+        const viewSpeaker = `./viewSpeaker/view-speaker.html?id=${id}`
 
         const row = table.insertRow()
         row.insertCell(0).innerHTML = id
@@ -37,7 +38,10 @@ function propulateActualData(table, events) {
         row.insertCell(4).innerHTML = location
         row.insertCell(5).innerHTML = time
         row.insertCell(6).innerHTML = `
-        <a href='${viewPageUrl}'>View</a> 
+        <a href='${viewPageUrl}'>View Event</a> 
+        `
+        row.insertCell(7).innerHTML = `
+        <a href='${viewSpeaker}'>Event Speaker</a> 
         `
     }
 }
