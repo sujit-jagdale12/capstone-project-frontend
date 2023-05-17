@@ -108,3 +108,12 @@ function goToTicketSetting() {
     const id = readIdQueryParam()
     window.location.href = `./ticket.html?id=${id}`
 }
+
+function speakerForm(){
+    const id = readIdQueryParam()
+    window.location.href=`./schedule/speakervendor.html?id=${id}`;
+}
+function reminder(){
+    const id = readIdQueryParam()
+    window.location.href=`./reminders/reminder.html?id=${id}`;
+}

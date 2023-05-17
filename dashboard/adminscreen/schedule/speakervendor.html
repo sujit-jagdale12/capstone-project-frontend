@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Event Logistics Management</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <style>
+    .container {
+      margin-top: 50px;
+      max-width: 800px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container mt-5">
+    <h1>Event Logistics Management</h1>
+
+    <h2>Schedule Speakers</h2>
+    <form id="schedule-speaker-vendor">
+      <div class="row">
+        <div class="col">
+          <div class="alert alert-danger" role="alert" id="errMsg">
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="speakerName">Speaker Name</label>
+        <input type="text" class="form-control" id="speakerName" placeholder="Enter speaker name" name="speaker">
+      </div>
+      <div class="form-group">
+        <label for="speakerTopic">Topic</label>
+        <input type="text" class="form-control" id="speakerTopic" placeholder="Enter speaker topic" name="topic">
+      </div>
+      <div class="form-group">
+        <label for="time"><b>Start Time</b></label>
+        <input type="time" class="form-control input-minimize" id="time" name="startTime" placeholder="23:00">
+    </div>
+      <div class="form-group">
+        <label for="time"><b>End Time</b></label>
+        <input type="time" class="form-control input-minimize" id="time" name="endTime" placeholder="23:00">
+    </div>
+      <h2>Schedule Vendors</h2>
+      <div class="form-group">
+        <label for="vendorName">Vendor Name</label>
+        <input type="text" class="form-control" id="vendorName" placeholder="Enter vendor name" name="vendor">
+      </div>
+      <div class="form-group">
+        <label for="vendorProduct">Product/Service</label>
+        <input type="text" class="form-control" id="vendorProduct" placeholder="Enter vendor product/service"
+          name="service">
+      </div>
+    
+      <button type="submit" class="btn btn-primary">Add</button>
+    </form>
+  </div>
+
+  <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Success</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          ✔ Speaker and vendor details added to event!
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success" onclick="backToUpdate()">Done</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="schedule.js"></script>
+</body>
+
+</html>
