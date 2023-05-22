@@ -22,13 +22,11 @@ function setupTable() {
 setupTable()
 
 function propulateActualData(table, events) {
+    const errMsg = document.getElementById('errMsg');
+    errMsg.innerHTML = ''; // Clear any previous error message
+
     while (table.rows.length > 1) {
         table.deleteRow(1);
-    }
-
-    if (events.length === 0) {
-        
-        return;
     }
 
     for (const event of events) {
@@ -46,33 +44,42 @@ function propulateActualData(table, events) {
         row.insertCell(6).innerHTML = `<a href='${viewPageUrl}'>View Event</a>`;
         row.insertCell(7).innerHTML = `<a href='${viewSpeaker}'>Event Speaker</a>`;
     }
-}
 
+}
 
 
 function apiFetchAllEvents(table) {
-
-    axios.get('http://localhost:8080/attendee/upcomingevents')
+    axios
+        .get('http://localhost:8080/attendee/upcomingevents')
         .then(res => {
-            const { data } = res
-            propulateActualData(table, data)
+            const { data } = res;
+            propulateActualData(table, data);
         })
-        .catch(err => console.log(err))
+        .catch(error => {
+            console.error('Error fetching events:', error);
+            const errMsg = document.getElementById('errMsg');
+            errMsg.innerHTML = "<strong><h2>No upcoming events found. Please try again later.</h2></strong>";
+        });
 }
 
 function apiFetchAllLocationEvents(table, loc) {
-
-    const url = `http://localhost:8080/attendee/events`
-    axios.get(url, {
-        params: {
-            location: loc
-        }
-    }).then(res => {
-        const { data } = res
-        propulateActualData(table, data)
-    })
-        .catch(err => console.log(err))
+    const url = 'http://localhost:8080/attendee/events';
+    axios
+        .get(url, {
+            params: {
+                location: loc,
+            },
+        })
+        .then(res => {
+            const { data } = res;
+            propulateActualData(table, data);
+        })
+        .catch(error => {
+            const errMsg = document.getElementById('errMsg');
+            errMsg.innerHTML = "<strong><h2>No event found for given location.</h2></strong>";
+        });
 }
+
 function logOut() {
     localStorage.setItem("userId", null)
     window.location.href = "../../loginpage/login.html"
