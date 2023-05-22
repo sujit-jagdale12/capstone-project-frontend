@@ -23,28 +23,31 @@ setupTable()
 
 function propulateActualData(table, events) {
     while (table.rows.length > 1) {
-        table.deleteRow(1)
+        table.deleteRow(1);
     }
-    for (const event of events) {
-        const { id, title, startdate, enddate, location, time } = event
-        const viewPageUrl = `./view-event.html?id=${id}`
-        const viewSpeaker = `./viewSpeaker/view-speaker.html?id=${id}`
 
-        const row = table.insertRow()
-        row.insertCell(0).innerHTML = id
-        row.insertCell(1).innerHTML = title
-        row.insertCell(2).innerHTML = startdate
-        row.insertCell(3).innerHTML = enddate
-        row.insertCell(4).innerHTML = location
-        row.insertCell(5).innerHTML = time
-        row.insertCell(6).innerHTML = `
-        <a href='${viewPageUrl}'>View Event</a> 
-        `
-        row.insertCell(7).innerHTML = `
-        <a href='${viewSpeaker}'>Event Speaker</a> 
-        `
+    if (events.length === 0) {
+        
+        return;
+    }
+
+    for (const event of events) {
+        const { id, title, startdate, enddate, location, time } = event;
+        const viewPageUrl = `./view-event.html?id=${id}`;
+        const viewSpeaker = `./viewSpeaker/view-speaker.html?id=${id}`;
+
+        const row = table.insertRow();
+        row.insertCell(0).innerHTML = id;
+        row.insertCell(1).innerHTML = title;
+        row.insertCell(2).innerHTML = startdate;
+        row.insertCell(3).innerHTML = enddate;
+        row.insertCell(4).innerHTML = location;
+        row.insertCell(5).innerHTML = time;
+        row.insertCell(6).innerHTML = `<a href='${viewPageUrl}'>View Event</a>`;
+        row.insertCell(7).innerHTML = `<a href='${viewSpeaker}'>Event Speaker</a>`;
     }
 }
+
 
 
 function apiFetchAllEvents(table) {

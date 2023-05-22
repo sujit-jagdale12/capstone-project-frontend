@@ -24,15 +24,20 @@ function apiGetEventDetails() {
 }
 
 function setupForm() {
-    const formEvent = document.getElementById('view-eventdetails')
+    const formEvent = document.getElementById('view-eventdetails');
 
     formEvent.onsubmit = ev => {
-        ev.preventDefault()
-        showSuccessModal()
-    }
+        ev.preventDefault();
+        showPrice()
+        showSuccessModal();
+    };
+
+    const ticketTypeInput = document.getElementById('ticketType');
+    ticketTypeInput.addEventListener('change', showPrice);
 }
 
-setupForm()
+setupForm();
+
 
 apiGetEventDetails()
 
@@ -54,7 +59,7 @@ function bookEventByUserId() {
 
         .then(
             window.location.href = "./payment-ui/payment.html"
-        ).catch (err => console.log(err))
+        ).catch(err => console.log(err))
 }
 
 
@@ -66,17 +71,30 @@ function showSuccessModal() {
 
 function showPrice() {
     const ticketType = document.getElementById("ticketType").value;
+    const eventId = readIdQueryParam();
 
-    let price;
-    if (ticketType === "vip") {
-      price = "$100";
-    } else if (ticketType === "earlybird") {
-      price = "$75";
-    } else if (ticketType === "group") {
-      price = "$50";
-    } else {
-      price = "";
-    }
+    axios
+        .get(`http://localhost:8080/attendee/tickets/${eventId}`)
+        .then(function (response) {
+            const ticketPrices = response.data;
 
-    document.getElementById("priceContainer").textContent = "Price: " + price;
-  }
+            let price = "";
+            if (ticketPrices) {
+                if (ticketType === "vip") {
+                    price = ticketPrices.find(ticket => ticket.type === "vip").price;
+                } else if (ticketType === "earlybird") {
+                    price = ticketPrices.find(ticket => ticket.type === "earlybird").price;
+                } else if (ticketType === "group") {
+                    price = ticketPrices.find(ticket => ticket.type === "group").price + " for 5 people";
+                }
+            }
+
+            const priceContainer = document.getElementById("priceContainer");
+            priceContainer.innerHTML = "Price:<br><b>$" + price + "</b>";
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+}
+
+
