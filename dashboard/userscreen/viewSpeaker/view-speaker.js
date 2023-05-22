@@ -13,10 +13,15 @@ function apiGetEventDetails() {
         .then(function (response) {
             const data = response.data[0];
             console.log(data)
-            document.getElementById('speaker').textContent = data.speaker;
-            document.getElementById('topic').textContent = data.topic;
-            document.getElementById('startTime').textContent = data.startTime;
-            document.getElementById('endTime').textContent = data.endTime;
+            if (data) {
+                document.getElementById('speaker').textContent = data.speaker;
+                document.getElementById('topic').textContent = data.topic;
+                document.getElementById('startTime').textContent = data.startTime;
+                document.getElementById('endTime').textContent = data.endTime;
+            } else {
+                document.getElementById('speaker').textContent = 'No speaker added';
+                // Hide or update other elements as needed
+            }
         })
         .catch(function (error) {
             console.log(error);
