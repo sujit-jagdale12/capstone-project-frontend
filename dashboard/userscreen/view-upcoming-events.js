@@ -12,10 +12,25 @@ function setupTable() {
     const btnSearch = document.getElementById('btnSearch')
 
     btnSearch.onclick = () => {
-
-        apiFetchAllLocationEvents(table, document.getElementById('location').value)
-    }
-
+        const form = {
+            location: document.getElementById('location').value,
+            date: document.getElementById('date').value,
+        };
+    
+        // const validation = validateForm(form);
+    
+        // if (validation.sts === false) {
+        //     const errMsg = document.getElementById('errMsg');
+        //     errMsg.innerHTML = `<strong>${validation.msg}</strong>`;
+        //     return;
+        // }
+    
+        if (form.location.length > 0) {
+            apiFetchAllLocationEvents(table, form.location);
+        } else {
+            apiFetchEventsByDate(table, form.date);
+        }
+    };
     apiFetchAllEvents(table)
 }
 
@@ -79,8 +94,20 @@ function apiFetchAllLocationEvents(table, loc) {
             errMsg.innerHTML = "<strong><h2>No event found for given location.</h2></strong>";
         });
 }
-
-function logOut() {
-    localStorage.setItem("userId", null)
-    window.location.href = "../../loginpage/login.html"
+function apiFetchEventsByDate(table, date) {
+    const url = 'http://localhost:8080/attendee/events/date';
+    axios
+        .get(url, {
+            params: {
+                date: date,
+            },
+        })
+        .then(res => {
+            const { data } = res;
+            propulateActualData(table, data);
+        })
+        .catch(error => {
+            const errMsg = document.getElementById('errMsg');
+            errMsg.innerHTML = "<strong><h2>No event found for the selected date.</h2></strong>";
+        });
 }
