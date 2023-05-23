@@ -117,3 +117,7 @@ function reminder(){
     const id = readIdQueryParam()
     window.location.href=`./reminders/reminder.html?id=${id}`;
 }
+function viewAnalytics(){
+    const id = readIdQueryParam()
+    window.location.href=`./analytics/eventanalytics.html?id=${id}`;
+}
