@@ -47,18 +47,41 @@ function logOut() {
 }
 
 
-function bookEventByUserId() {
-    const userId = localStorage.getItem("userId");
+// function bookEventByUserId() {
+//     const userId = localStorage.getItem("userId");
 
+//     const eventId = readIdQueryParam()
+
+//     const headers = {
+//         'content-type': 'application/json'
+//     }
+//     axios.post(`http://localhost:8080/attendee/${userId}/event/${eventId}`, { headers })
+//         .then(
+//             window.location.href = "./payment-ui/payment.html"
+//         ).catch(err => console.log(err))
+// }
+function apiOrderTicket() {
+    const ticketType = document.getElementById("ticketType").value;
+    const quantity = document.getElementById("quantity").value;
+
+    const userId = localStorage.getItem("userId");
     const eventId = readIdQueryParam()
+
+    const requestData = {
+        tickettype: ticketType,
+        quantity: quantity
+    };
 
     const headers = {
         'content-type': 'application/json'
     }
-    axios.post(`http://localhost:8080/attendee/${userId}/event/${eventId}`, { headers })
-
+    axios.post(`http://localhost:8080/attendee/${userId}/event/${eventId}/order`, requestData, { headers })
         .then(
-            window.location.href = "./payment-ui/payment.html"
+            axios.post(`http://localhost:8080/attendee/${userId}/event/${eventId}`, { headers })
+                .then(
+                    window.location.href = "./payment-ui/payment.html"
+                ).catch(err => console.log(err))
+            // window.location.href = "./payment-ui/payment.html"
         ).catch(err => console.log(err))
 }
 
