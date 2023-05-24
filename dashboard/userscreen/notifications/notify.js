@@ -1,31 +1,43 @@
-const notifications = [
-    {
-      title: 'Important Announcement',
-      message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
-    },
-    {
-      title: 'Reminder: Event Tomorrow',
-      message: 'Don\'t forget about the event happening tomorrow at 7 PM.'
-    },
-    {
-      title: 'System Maintenance',
-      message: 'We will be performing system maintenance on Friday, from 10 PM to 12 AM.'
-    }
-  ];
+const notifications = [];
+function apiGetEventNotifications() {
+  const userId = localStorage.getItem("userId");
 
-  function displayNotifications() {
-    const notificationList = document.getElementById('notificationList');
+  axios.get(`http://localhost:8080/attendee/${userId}/notification`)
+    .then(function (response) {
+      const data = response.data.bd;
+      console.log(data)
+      notifications.length = 0;
 
-    notificationList.innerHTML = '';
+      data.forEach(item => {
+        const notification = {
+          message: item.message,
+          date: item.date
+        };
+        notifications.push(notification);
+      });
 
-    notifications.forEach(notification => {
-      const listItem = document.createElement('li');
-      listItem.className = 'list-group-item';
-      listItem.innerHTML = `
-        <h5 class="mb-1">${notification.title}</h5>
-        <p class="mb-1">${notification.message}</p>
-      `;
-      notificationList.appendChild(listItem);
+      displayNotifications();
+    })
+    .catch(function (error) {
+      console.log(error);
     });
-  }
-  window.addEventListener('load', displayNotifications);
+}
+
+function displayNotifications() {
+  const notificationList = document.getElementById('notificationList');
+
+  notificationList.innerHTML = '';
+
+  notifications.reverse().forEach(notification => {
+    const listItem = document.createElement('li');
+    listItem.className = 'list-group-item';
+    listItem.innerHTML = `
+        <text class="mb-1">${notification.date}</text>
+        <h5><p class="mb-1">${notification.message}</p></h5>
+      `;
+    notificationList.appendChild(listItem);
+  });
+}
+
+window.addEventListener('load', apiGetEventNotifications);
+
