@@ -1,8 +1,7 @@
-const validateForm = ({ reminder, date, time }) => {
+const validateForm = ({ message }) => {
 
-    if (reminder.length <= 0) return { msg: 'invalid title', sts: false }
-    if (time.length <= 0) return { msg: 'invalid time', sts: false }
-    return { sts: 'success', msg: 'all fields are valid' }
+    if (message.length <= 0) return { msg: 'invalid title', sts: false }
+    return { msg: 'All fields valid', sts: true }
 }
 
 const readIdQueryParam = () => {
@@ -44,8 +43,8 @@ function apiSignup(user, form) {
     const headers = {
         'content-type': 'application/json'
     }
-    const eventId=readIdQueryParam();
-    axios.post(`http://localhost:8080/admin/events/${eventId}/reminder`, user, { headers })
+    const eventId = readIdQueryParam();
+    axios.post(`http://localhost:8080/admin/events/${eventId}/notification`, user, { headers })
 
         .then(res => {
             form.reset()
@@ -60,4 +59,16 @@ function showSuccessModal() {
 }
 function backToUpdate() {
     window.history.back();
+}
+function speakerForm(){
+    const id = readIdQueryParam()
+    window.location.href=`../schedule/speakervendor.html?id=${id}`;
+}
+function reminder(){
+    const id = readIdQueryParam()
+    window.location.href=`../notification/sendnotification.html?id=${id}`;
+}
+function viewAnalytics(){
+    const id = readIdQueryParam()
+    window.location.href=`../analytics/eventanalytics.html?id=${id}`;
 }

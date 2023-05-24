@@ -115,7 +115,7 @@ function speakerForm(){
 }
 function reminder(){
     const id = readIdQueryParam()
-    window.location.href=`./reminders/reminder.html?id=${id}`;
+    window.location.href=`./notification/sendnotification.html?id=${id}`;
 }
 function viewAnalytics(){
     const id = readIdQueryParam()
