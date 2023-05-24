@@ -13,8 +13,8 @@ function apiTicketAnalytics() {
             console.log(data);
 
             for (const item of data) {
-                const { ticketType, ticketCount } = item;
-                ticketSalesData[ticketType] = ticketCount;
+                const { ticketType, ticketCount ,totalQuantity} = item;
+                ticketSalesData[ticketType] = totalQuantity;
             }
 
             if (areAllTicketCountsZero(ticketSalesData)) {
