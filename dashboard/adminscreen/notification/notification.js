@@ -1,6 +1,6 @@
 const validateForm = ({ message }) => {
 
-    if (message.length <= 0) return { msg: 'invalid title', sts: false }
+    if (message.length <= 0) return { msg: 'Enter some message', sts: false }
     return { msg: 'All fields valid', sts: true }
 }
 

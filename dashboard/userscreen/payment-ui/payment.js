@@ -83,3 +83,7 @@ function bookEventByUserId() {
             hideSetBookEvent()
         }).catch(err => console.log(err))
 }
+
+function backToUpdate() {
+    window.history.back();
+}

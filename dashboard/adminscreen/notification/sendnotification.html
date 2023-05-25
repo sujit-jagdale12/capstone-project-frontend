@@ -5,11 +5,14 @@
     <title>Notification Page</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+   
     <link rel="stylesheet" href="../admin.css">
     <style>
         .container {
-            max-width: 500px;
-            margin-top: 50px;
+            max-width: 800px;
+            max-height: 500px;
+            margin-top: 500px;
         }
     </style>
 </head>
@@ -25,26 +28,27 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="../admin-dash.html">Home</a>
+                        <a class="nav-link active" aria-current="page" href="./admin-dash.html"><i class="fa fa-home"
+                            style="font-size:36px"></i></a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
     <div class="container mt-4">
-        <h1>Notification Page</h1>
+        <h1>🔔 Notification Page</h1>
         <form id="reminder-form">
             <div class="row">
                 <div class="col">
-                    <div class="alert" role="alert" id="errMsg">
+                    <div class="alert alert-danger role="alert" id="errMsg">
                     </div>
                 </div>
             </div>
             <div class="form-group">
                 <label for="reminder">Message:</label>
-                <textarea class="form-control" id="message" name="message" placeholder="Enter your message"></textarea>
+                <textarea class="form-control" id="message" name="message" placeholder="Enter your message" style="width: 800px; height: 250px;"></textarea>
             </div>
-            <button class="btn btn-dark" onclick="backToUpdate()">Back</button>
+            <button type="" class="btn btn-dark" onclick="backToUpdate()">Back</button>
             <button type="submit" class="btn btn-primary">Send</button>
         </form>
     </div>

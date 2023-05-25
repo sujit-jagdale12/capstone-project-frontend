@@ -13,7 +13,7 @@ function apiTicketAnalytics() {
             console.log(data);
 
             for (const item of data) {
-                const { ticketType, ticketCount ,totalQuantity} = item;
+                const { ticketType, ticketCount, totalQuantity } = item;
                 ticketSalesData[ticketType] = totalQuantity;
             }
 
@@ -56,18 +56,6 @@ const chart = new Chart(ctx, {
             ],
             borderWidth: 1
         }]
-    },
-    options: {
-        responsive: true,
-        plugins: {
-            legend: {
-                position: 'top',
-            },
-            title: {
-                display: true,
-                text: 'Ticket Sales Analytics'
-            }
-        }
     }
 });
 
@@ -83,4 +71,7 @@ function areAllTicketCountsZero(ticketSalesData) {
         }
     }
     return true;
+}
+function backToUpdate() {
+    window.history.back();
 }
