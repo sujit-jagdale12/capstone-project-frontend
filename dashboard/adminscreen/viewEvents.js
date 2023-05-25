@@ -20,9 +20,11 @@ function propulateActualData(table, events) {
         row.insertCell(4).innerHTML = location
         row.insertCell(5).innerHTML = time
         row.insertCell(6).innerHTML = `
-            <a class='ms-2' href='${updatePageUrl}'>View</a> 
-            <a class='ms-2' onclick='showConfirmDeleteModal(${id})'>Delete</a> 
-        `
+    <a class='ms-5' style="font-size:24px;color:blue" href='${updatePageUrl}'><i class='fas fa-eye'></i></a>
+    <a class='ms-5' style="font-size:24px;color:red" onclick='showConfirmDeleteModal(${id})'><i class='fas fa-trash-alt'></i></a>
+`;
+
+
     }
 }
 

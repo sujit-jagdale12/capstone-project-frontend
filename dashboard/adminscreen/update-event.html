@@ -8,6 +8,7 @@
     <title>Update Event details</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="admin.css">
 </head>
 
@@ -22,7 +23,8 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="./admin-dash.html">Home</a>
+                        <a class="nav-link active" aria-current="page" href="./admin-dash.html"><i class="fa fa-home"
+                                style="font-size:36px"></i></a>
                     </li>
                     <li class="nav-item ms-10">
                         <a class="nav-link" href="./viewAllEvents.html" id="events">Events</a>
@@ -31,14 +33,14 @@
                         <a class="nav-link" onclick="speakerForm()">Speakers&Vendors</a>
                     </li>
                     <li class="nav-item ms-10">
-                        <a class="nav-link" onclick="reminder()">Notify</a>
+                        <a class="nav-link" onclick="viewAnalytics()"><i class="fa fa-pie-chart"
+                                style="font-size:24px;color:red"></i></a>
                     </li>
                     <li class="nav-item ms-10">
-                        <a class="nav-link" onclick="viewAnalytics()">view analytics</a>
+                        <a class="nav-link" onclick="reminder()"><i class="fa fa-bell"
+                                style="font-size:24px;color:yellow"></i></a>
                     </li>
-                    <li class="nav-item ms-10">
-                        <a class="nav-link" onclick="logOut()">Logout</a>
-                    </li>
+                    
                 </ul>
             </div>
         </div>
