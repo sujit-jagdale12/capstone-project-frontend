@@ -8,6 +8,7 @@
     <title>Update Event details</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="view-userevent.css">
 
 </head>
@@ -23,7 +24,8 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="./user-dash.html">Home</a>
+                        <a class="nav-link active" aria-current="page" href="./user-dash.html"><i class="fa fa-home"
+                                style="font-size:36px"></i></a>
                     </li>
                     <li class="nav-item ms-10">
                         <a class="nav-link" href="./MyEvents.html">My Events</a>
@@ -58,16 +60,23 @@
                     <h5 class="modal-title" id="exampleModalLabel">Choose Ticket Type</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="alert alert-danger alert-sm" role="alert" id="errMsg">
+                        </div>
+                    </div>
+                </div>
                 <div class="form-group">
                     <label for="ticketType"><b>Ticket Type</b></label>
-                    <select class="form-select form-select-sm mt-3" id="ticketType" onchange="showPrice()" name="ticketType">
+                    <select class="form-select form-select-sm mt-3" id="ticketType" onchange="showPrice()"
+                        name="ticketType">
                         <option value="">Select...</option>
                         <option value="vip">VIP</option>
                         <option value="earlybird">Early Bird</option>
                         <option value="group">Group</option>
                     </select>
                 </div>
-                <div id="priceContainer" class="col-md-6 mb-3"></div>
+                <div id="priceContainer" class="col-md-6 mb-3" id="price"></div>
                 <div class="col-md-6 mb-3">
                     <label for="quantity" class="form-label"><b>Quantity</b></label>
                     <input type="number" class="form-control" id="quantity" name="quantity" placeholder="quantity">

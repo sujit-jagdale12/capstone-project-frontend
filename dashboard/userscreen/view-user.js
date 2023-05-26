@@ -46,20 +46,6 @@ function logOut() {
     window.location.href = "../../loginpage/login.html"
 }
 
-
-// function bookEventByUserId() {
-//     const userId = localStorage.getItem("userId");
-
-//     const eventId = readIdQueryParam()
-
-//     const headers = {
-//         'content-type': 'application/json'
-//     }
-//     axios.post(`http://localhost:8080/attendee/${userId}/event/${eventId}`, { headers })
-//         .then(
-//             window.location.href = "./payment-ui/payment.html"
-//         ).catch(err => console.log(err))
-// }
 function apiOrderTicket() {
     const ticketType = document.getElementById("ticketType").value;
     const quantity = document.getElementById("quantity").value;
@@ -93,14 +79,16 @@ function showSuccessModal() {
 }
 
 function showPrice() {
+    const err = document.getElementById('errMsg')
+    err.style.display = 'none'
     const ticketType = document.getElementById("ticketType").value;
     const eventId = readIdQueryParam();
 
     axios
         .get(`http://localhost:8080/attendee/tickets/${eventId}`)
         .then(function (response) {
-            const ticketPrices = response.data;
 
+            const ticketPrices = response.data;
             let price = "";
             if (ticketPrices) {
                 if (ticketType === "vip") {
@@ -116,8 +104,11 @@ function showPrice() {
             priceContainer.innerHTML = "Price:<br><b>$" + price + "</b>";
         })
         .catch(function (error) {
-            console.log(error);
+            const errMsg = document.getElementById('errMsg');
+            errMsg.style.display = 'block'
+            errMsg.innerHTML = "Price for selected ticket has not set.try again later.";
         });
 }
+
 
 
