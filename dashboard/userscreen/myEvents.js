@@ -45,23 +45,53 @@ function createHtmlContent(event, ticketCode) {
     const { title, startdate, enddate, location, time } = event;
 
     const htmlContent = `
-      <html>
+        <html>
         <head>
-          <title>${title}</title>
+            <title>${title}</title>
+            <style>
+                body {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    min-height: 100vh;
+                    margin: 0;
+                    padding: 0;
+                }
+                .ticket {
+                    background-color: #f9f9f9;
+                    border-top: 2px solid #ccc;
+                    border-bottom: 2px solid #ccc;
+                    padding: 20px;
+                    margin-top: 30px;
+                    text-align: center;
+                }
+                h1 {
+                    margin-bottom: 10px;
+                }
+                p {
+                    margin: 8px 0;
+                }
+            </style>
         </head>
         <body>
-          <h1>${title}</h1>
-          <p><b>Ticket Code:</b> ${ticketCode}</p>
-          <p><b>Start Date:</b> ${startdate}</p>
-          <p><b>End Date:</b> ${enddate}</p>
-          <p><b>Location:</b> ${location}</p>
-          <p><b>Time:</b> ${time}</p>
+            <div class="ticket">
+                <h1>${title}</h1>
+                <p><strong>Ticket Code:</strong> ${ticketCode}</p>
+                <p><strong>Start Date:</strong> ${startdate}</p>
+                <p><strong>End Date:</strong> ${enddate}</p>
+                <p><strong>Location:</strong> ${location}</p>
+                <p><strong>Time:</strong> ${time}</p>
+            </div>
         </body>
-      </html>
+        </html>
     `;
 
     return htmlContent;
 }
+
+
+
 
 function generateTicketCode() {
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
