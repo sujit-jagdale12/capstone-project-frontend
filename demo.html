@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Event Ticket</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
+        integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="ticket.js"></script>
+</head>
+<body>
+    <h1>Event Ticket</h1>
+    <form id="ticketForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br><br>
+        <!-- Add other attendee details if needed -->
+        <button type="button" id="generateTicket">Generate Ticket</button>
+    </form>
+</body>
+</html>

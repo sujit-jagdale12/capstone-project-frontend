@@ -32,27 +32,16 @@ function propulateActualData(table, events) {
 }
 
 function downloadEventAsPdf(event) {
-    const htmlContent = createHtmlContent(event);
-
-    const fileName = event.title + ".pdf";
-
-    const doc = new jsPDF();
-
-    doc.html(htmlContent, {
-        callback: function () {
-            const pdfData = doc.output('blob');
-
-            const downloadLink = document.createElement('a');
-            downloadLink.href = URL.createObjectURL(pdfData);
-            downloadLink.download = fileName;
-
-            downloadLink.click();
-        },
-    });
+    const ticketCode = generateTicketCode(); // Generate a unique ticket code
+    const htmlContent = createHtmlContent(event, ticketCode);
+    console.log(event)
+    html2pdf()
+        .set({ filename: 'event_ticket.pdf' })
+        .from(htmlContent)
+        .save();
 }
 
-
-function createHtmlContent(event) {
+function createHtmlContent(event, ticketCode) {
     const { title, startdate, enddate, location, time } = event;
 
     const htmlContent = `
@@ -62,6 +51,7 @@ function createHtmlContent(event) {
         </head>
         <body>
           <h1>${title}</h1>
+          <p><b>Ticket Code:</b> ${ticketCode}</p>
           <p><b>Start Date:</b> ${startdate}</p>
           <p><b>End Date:</b> ${enddate}</p>
           <p><b>Location:</b> ${location}</p>
@@ -72,6 +62,19 @@ function createHtmlContent(event) {
 
     return htmlContent;
 }
+
+function generateTicketCode() {
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let ticketCode = '';
+
+    for (let i = 0; i < 6; i++) {
+        const randomIndex = Math.floor(Math.random() * characters.length);
+        ticketCode += characters[randomIndex];
+    }
+
+    return ticketCode;
+}
+
 
 
 function logOut() {
