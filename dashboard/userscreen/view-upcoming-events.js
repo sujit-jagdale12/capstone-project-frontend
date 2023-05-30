@@ -61,8 +61,8 @@ function propulateActualData(table, events) {
         row.insertCell(3).innerHTML = enddate;
         row.insertCell(4).innerHTML = location;
         row.insertCell(5).innerHTML = time;
-        row.insertCell(6).innerHTML = `<a href='${viewPageUrl}'>View Event</a>`;
-        row.insertCell(7).innerHTML = `<a href='${viewSpeaker}'>Event Speaker</a>`;
+        row.insertCell(6).innerHTML = `<a href='${viewPageUrl}'><i class='fas fa-eye'></i></a>`;
+        row.insertCell(7).innerHTML = `<a href='${viewSpeaker}'>Speaker</a>`;
     }
 
 }

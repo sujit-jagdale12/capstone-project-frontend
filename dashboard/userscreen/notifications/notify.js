@@ -39,7 +39,7 @@ function displayNotifications() {
       const listItem = document.createElement('li');
       listItem.className = 'list-group-item';
       listItem.innerHTML = `
-        <text class="mb-1">${notification.date}</text>
+      <text class="mb-1" style="font-size: smaller;">${notification.date}</text>
         <h5><p class="mb-1">${notification.message}</p></h5>
       `;
       notificationList.appendChild(listItem);
