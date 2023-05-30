@@ -6,43 +6,29 @@ const validateForm = ({ location }) => {
 }
 
 function setupTable() {
-
-    const table = document.getElementById('tableEvent')
-
-    const btnSearch = document.getElementById('btnSearch')
+    const btnSearch = document.getElementById('btnSearch');
 
     btnSearch.onclick = () => {
-        const form = {
-            location: document.getElementById('location').value,
-            date: document.getElementById('date').value,
-        };
+        const location = document.getElementById('location').value;
+        const date = document.getElementById('date').value;
 
-        // const validation = validateForm(form);
-
-        // if (validation.sts === false) {
-        //     const errMsg = document.getElementById('errMsg');
-        //     errMsg.innerHTML = `<strong>${validation.msg}</strong>`;
-        //     return;
-        // }
-
-        if (form.location.length > 0) {
-            apiFetchAllLocationEvents(table, form.location);
+        if (location.length > 0) {
+            apiFetchAllLocationEvents(location);
         } else {
-            apiFetchEventsByDate(table, form.date);
+            apiFetchEventsByDate(date);
         }
     };
-    apiFetchAllEvents(table)
+
+    apiFetchAllEvents();
 }
 
-setupTable()
+setupTable();
 
-function propulateActualData(table, events) {
-    const errMsg = document.getElementById('errMsg');
-    errMsg.innerHTML = '';
 
-    while (table.rows.length > 1) {
-        table.deleteRow(1);
-    }
+function propulateCardData(events) {
+    const eventCards = document.getElementById('eventCards');
+    eventCards.innerHTML = '';
+
     if (events.length === 0) {
         const errMsg = document.getElementById('errMsg');
         errMsg.innerHTML = "<strong><h2>No events found.</h2></strong>";
@@ -54,26 +40,38 @@ function propulateActualData(table, events) {
         const viewPageUrl = `./view-event.html?id=${id}`;
         const viewSpeaker = `./viewSpeaker/view-speaker.html?id=${id}`;
 
-        const row = table.insertRow();
-        row.insertCell(0).innerHTML = id;
-        row.insertCell(1).innerHTML = title;
-        row.insertCell(2).innerHTML = startdate;
-        row.insertCell(3).innerHTML = enddate;
-        row.insertCell(4).innerHTML = location;
-        row.insertCell(5).innerHTML = time;
-        row.insertCell(6).innerHTML = `<a href='${viewPageUrl}' style="font-size:24px;color:blue"><i class='fas fa-eye'></i></a>`;
-        row.insertCell(7).innerHTML = `<a href='${viewSpeaker}'>Speaker</a>`;
-    }
+        const card = document.createElement('div');
+        card.className = 'col-md-4 mb-3';
 
+        const cardContent = `
+            <div class="event-card">
+                <div class="card-body">
+                    <h5 class="card-title">${title}</h5>
+                    <p class="card-text">
+                        <strong>Start Date:</strong> ${startdate}<br>
+                        <strong>End Date:</strong> ${enddate}<br>
+                        <strong>Location:</strong> ${location}<br>
+                        <strong>Time:</strong> ${time}
+                    </p>
+                    <a href="${viewPageUrl}" class="btn btn-primary">View Event</a>
+                    <a href="${viewSpeaker}" class="btn btn-secondary">View Speaker</a>
+                </div>
+            </div>
+        `;
+
+        card.innerHTML = cardContent;
+        eventCards.appendChild(card);
+    }
 }
 
 
-function apiFetchAllEvents(table) {
+
+function apiFetchAllEvents() {
     axios
         .get('http://localhost:8080/attendee/upcomingevents')
         .then(res => {
             const { data } = res;
-            propulateActualData(table, data);
+            propulateCardData(data);
         })
         .catch(error => {
             console.error('Error fetching events:', error);
@@ -82,7 +80,8 @@ function apiFetchAllEvents(table) {
         });
 }
 
-function apiFetchAllLocationEvents(table, loc) {
+
+function apiFetchAllLocationEvents(loc) {
     const url = 'http://localhost:8080/attendee/events';
     axios
         .get(url, {
@@ -92,17 +91,17 @@ function apiFetchAllLocationEvents(table, loc) {
         })
         .then(res => {
             const { data } = res;
-            propulateActualData(table, data);
+            propulateCardData(data);
         })
         .catch(error => {
             const errMsg = document.getElementById('errMsg');
-            errMsg.innerHTML = "<strong><h2>No event found for given location.</h2></strong>";
-            while (table.rows.length > 1) {
-                table.deleteRow(1);
-            }
+            errMsg.innerHTML = "<strong><h2>No event found for the given location.</h2></strong>";
+            const eventCards = document.getElementById('eventCards');
+            eventCards.innerHTML = '';
         });
 }
-function apiFetchEventsByDate(table, date) {
+
+function apiFetchEventsByDate(date) {
     const url = 'http://localhost:8080/attendee/events/date';
     axios
         .get(url, {
@@ -112,16 +111,16 @@ function apiFetchEventsByDate(table, date) {
         })
         .then(res => {
             const { data } = res;
-            propulateActualData(table, data);
+            propulateCardData(data);
         })
         .catch(error => {
             const errMsg = document.getElementById('errMsg');
             errMsg.innerHTML = "<strong><h2>No event found for the selected date.</h2></strong>";
-            while (table.rows.length > 1) {
-                table.deleteRow(1);
-            }
+            const eventCards = document.getElementById('eventCards');
+            eventCards.innerHTML = '';
         });
 }
+
 
 function logOut() {
     localStorage.setItem("userId", null)
