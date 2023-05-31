@@ -15,6 +15,9 @@ const readIdQueryParam = () => {
 function goBack() {
     window.history.back();
 }
+function refreshPage() {
+    window.location.reload()
+}
 function backToUpdate() {
     window.history.back();
 }
