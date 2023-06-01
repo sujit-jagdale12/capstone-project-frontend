@@ -1,9 +1,8 @@
 body {
-    background-color: cadetblue;
+    background-color: lightblue;
 }
 
 .card {
-    background-color: #212529;
     border-color: #fff;
     margin: 10px;
     border-radius: 10px;
@@ -12,6 +11,7 @@ body {
 
 .card-body {
     border-radius: 10px;
+    background-color: aliceblue;
 }
 
 .list-group-item {

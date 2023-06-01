@@ -35,7 +35,8 @@ function propulateCardData(events) {
         return;
     }
 
-    for (const event of events) {
+    for (let i = events.length - 1; i >= 0; i--) {
+        const event = events[i];
         const { id, title, startdate, enddate, location, time } = event;
         const viewPageUrl = `./view-event.html?id=${id}`;
         const viewSpeaker = `./viewSpeaker/view-speaker.html?id=${id}`;
@@ -63,6 +64,7 @@ function propulateCardData(events) {
         eventCards.appendChild(card);
     }
 }
+
 
 
 
